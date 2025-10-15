@@ -1,0 +1,75 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: var(--background1, white);
+}
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('./fonts/ubuntu-regular-webfont.woff2') format('woff2'),
+    url('./fonts/ubuntu-regular-webfont.woff') format('woff');
+  font-style: normal;
+}
+
+:root {
+  --background1: rgb(46, 111, 64);
+  --background2: rgb(255, 255, 255);
+  --text1: rgb(0, 0, 0);
+  --text2: rgb(0, 0, 0);
+  --text-footer: rgb(0, 0, 0);
+}
+
+body {
+  display: grid;
+  grid-template: 1fr 40px / 1fr;
+}
+
+main {
+  grid-row: 1 / 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  width: 350px;
+  background-color: rgb(59, 135, 80);
+  border-radius: 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  width: 40px;
+  margin: 5px 10px;
+}
+
+.pay {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+footer {
+  grid-row: 2 / 3;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 40px;
+  font-size: 1rem;
+  color: var(--text-footer);
+
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+}
