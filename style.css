@@ -38,7 +38,7 @@ main {
 }
 
 .wrapper {
-  width: 350px;
+  max-width: 350px;
   background-color: rgb(65, 146, 88);
   border-radius: 10px;
 }
@@ -60,7 +60,7 @@ ul {
 
 input {
   width: 40px;
-  margin: 5px 10px;
+  margin: 5px 20px 5px 10px;
 }
 
 .pay {
