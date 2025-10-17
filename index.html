@@ -16,25 +16,29 @@
   <main>
     <div class="wrapper">
       <form action="">
+        <div class="container">
+          <ul>
+            <li>
+              <label for="days">Days worked:</label>
+              <input type="number" id="days">
+            </li>
+            <li>
+              <label for="nights">Nights worked:</label>
+              <input type="number" id="nights">
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label for="weekend-days">Weekend days worked:</label>
+              <input type="number" id="weekend-days">
+            </li>
+            <li>
+              <label for="weekend-nights">Weekend nights worked:</label>
+              <input type="number" id="weekend-nights">
+            </li>
+          </ul>
+        </div>
         <ul>
-          <li>
-            <label for="days">Days worked:</label>
-            <input type="number" id="days">
-          </li>
-          <li>
-            <label for="nights">Nights worked:</label>
-            <input type="number" id="nights">
-          </li>
-          <br>
-          <li>
-            <label for="weekend-days">Weekend days worked:</label>
-            <input type="number" id="weekend-days">
-          </li>
-          <li>
-            <label for="weekend-nights">Weekend nights worked:</label>
-            <input type="number" id="weekend-nights">
-          </li>
-          <br>
           <li>
             <label for="stats">Stats worked:</label>
             <input type="number" id="stats">
@@ -51,7 +55,8 @@
             <label for="superstats-off">Superstats NOT worked:</label>
             <input type="number" id="superstats-off">
           </li>
-          <br>
+        </ul>
+        <ul>
           <li>
             <label for="sick">Sick days:</label>
             <input type="number" id="sick">
@@ -62,7 +67,7 @@
           </li>
         </ul>
       </form>
-      <p class="pay">Approximate pay:</p>
+      <p class="pay" id="net">Approximate pay:</p>
     </div>
   </main>
 

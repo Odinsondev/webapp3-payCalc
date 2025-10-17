@@ -9,13 +9,24 @@ const statsOff = document.getElementById('stats-off');
 const superstatsOff = document.getElementById('superstats-off');
 const sick = document.getElementById('sick');
 const leave = document.getElementById('leave');
+let net = document.getElementById('net');
 
 const hoursPerDay = 11;
 const payRate = 44.58;
 const regularHoursPremium = 2.15;
-const eveningPay = 1.4;
-const nightPay = 5;
+const eveningPayRate = 1.4;
+const nightPayRate = 5;
 const weekend = 3.5;
+
+//taxes
+const percentageOfGrossTaxable = 0.886;
+const citCoefficient = 0.00006;
+const cppPercent = 0.0634;
+const eiPrecentage = 0.0185;
+
+//deductions
+const unDuesPercentage = 0.019;
+const muncPenPercentage = 0.0861;
 
 //bind events
 days.addEventListener('change', calculatePay);
@@ -32,34 +43,80 @@ leave.addEventListener('change', calculatePay);
 //functions
 function calculatePay() {
   const hours =
-    (days.value +
-      nights.value +
-      weekendDays.value +
-      weekendNights.value +
-      stats.value +
-      superstats.value +
-      sick.value +
-      leave.value) *
+    (Number(days.value) +
+      Number(nights.value) +
+      Number(weekendDays.value) +
+      Number(weekendNights.value) +
+      Number(stats.value) +
+      Number(superstats.value) +
+      Number(sick.value) +
+      Number(leave.value)) *
     hoursPerDay;
 
   const hoursTimesPay = hours * payRate;
 
   const premium =
-    (days.value +
-      nights.value +
-      weekendDays.value +
-      weekendNights.value +
-      stats.value +
-      superstats.value) *
+    (Number(days.value) +
+      Number(nights.value) +
+      Number(weekendDays.value) +
+      Number(weekendNights.value) +
+      Number(stats.value) +
+      Number(superstats.value)) *
+    hoursPerDay *
     regularHoursPremium;
 
   const statPT = hoursTimesPay * 0.05;
 
-  const weekendPay = '';
-  const eveningPay = '';
-  const nightPay = '';
-  const statPay = '';
-  const superstatPay = '';
+  const weekendPay =
+    (Number(weekendDays.value) + Number(weekendNights.value)) *
+    hoursPerDay *
+    weekend;
+  const eveningPay =
+    ((Number(days.value) + Number(weekendDays.value)) * 3.5 +
+      (Number(nights.value) + Number(weekendNights.value)) * 4) *
+    eveningPayRate;
+  const nightPay =
+    (Number(nights.value) + Number(weekendNights.value)) * 8 * nightPayRate;
+  const statExtraPay =
+    Number(stats.value) * hoursPerDay * payRate +
+    Number(stats.value) * hoursPerDay * regularHoursPremium +
+    Number(statsOff.value) * hoursPerDay * payRate +
+    Number(statsOff.value) * hoursPerDay * regularHoursPremium;
+  const superstatExtraPay =
+    Number(superstats.value) * 16.5 * payRate +
+    Number(superstats.value) * 16.5 * regularHoursPremium +
+    Number(superstatsOff.value) * hoursPerDay * payRate +
+    Number(superstatsOff.value) * hoursPerDay * regularHoursPremium;
 
-  const totalGross = '';
+  const totalGross =
+    hoursTimesPay +
+    premium +
+    statPT +
+    weekendPay +
+    eveningPay +
+    nightPay +
+    statExtraPay +
+    superstatExtraPay;
+
+  //taxes calc
+  const taxableGross = totalGross * percentageOfGrossTaxable;
+
+  const citPercent = taxableGross * citCoefficient;
+  const cit = taxableGross * citPercent;
+  const cpp = taxableGross * cppPercent;
+  const ei = taxableGross * eiPrecentage;
+
+  const totalTaxes = cit + cpp + ei;
+
+  //additional deductions calc:
+  const unDues = totalGross * unDuesPercentage;
+  const muncPen = totalGross * muncPenPercentage;
+
+  const totalDeductions = unDues + muncPen;
+
+  //Net pay
+  const netPay =
+    Math.round((totalGross - totalTaxes - totalDeductions) * 100) / 100;
+
+  net.textContent = 'Approximate pay: ' + netPay;
 }
