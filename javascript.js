@@ -1,4 +1,9 @@
 //cache DOM
+const root = document.documentElement;
+const wrapper = document.getElementById('wrapper');
+const colorButton = document.getElementById('color-button');
+let color = 1;
+
 const days = document.getElementById('days');
 const nights = document.getElementById('nights');
 const weekendDays = document.getElementById('weekend-days');
@@ -29,6 +34,8 @@ const unDuesPercentage = 0.019;
 const muncPenPercentage = 0.0861;
 
 //bind events
+colorButton.addEventListener('click', changeColor);
+
 days.addEventListener('change', calculatePay);
 nights.addEventListener('change', calculatePay);
 weekendDays.addEventListener('change', calculatePay);
@@ -119,4 +126,26 @@ function calculatePay() {
     Math.round((totalGross - totalTaxes - totalDeductions) * 100) / 100;
 
   net.textContent = 'Approximate pay: ' + netPay;
+}
+
+function changeColor() {
+  if (color === 1) {
+    color = 2;
+  } else if (color === 2) {
+    color = 1;
+  }
+
+  if (color === 1) {
+    root.style.setProperty('--background1', 'rgb(115, 79, 150)');
+    wrapper.style.backgroundColor = 'rgb(138, 107, 168)';
+    container.style.backgroundColor = 'rgb(173, 141, 204)';
+    pay.style.backgroundColor = 'rgb(173, 141, 204)';
+  }
+
+  if (color === 2) {
+    root.style.setProperty('--background1', 'rgb(46, 111, 64)');
+    wrapper.style.backgroundColor = 'rgb(65, 146, 88)';
+    container.style.backgroundColor = 'rgb(84, 178, 111)';
+    pay.style.backgroundColor = 'rgb(84, 178, 111)';
+  }
 }

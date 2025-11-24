@@ -17,7 +17,7 @@ body {
 }
 
 :root {
-  --background1: rgb(46, 111, 64);
+  --background1: rgb(115, 79, 150);
   --background2: rgb(255, 255, 255);
   --text1: rgb(0, 0, 0);
   --text2: rgb(0, 0, 0);
@@ -26,11 +26,25 @@ body {
 
 body {
   display: grid;
-  grid-template: 1fr 40px / 1fr;
+  grid-template: 40px 1fr 40px / 1fr;
+}
+
+header {
+  grid-row: 1 / 2;
+
+  display: flex;
+  justify-content: end;
+}
+
+.color-button {
+  margin: 10px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
 }
 
 main {
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 
   display: flex;
   justify-content: center;
@@ -39,14 +53,14 @@ main {
 
 .wrapper {
   max-width: 350px;
-  background-color: rgb(65, 146, 88);
+  background-color: rgb(138, 107, 168);
   border-radius: 10px;
 }
 
 .container {
   margin: 20px;
   padding: 5px 0;
-  background-color: rgb(84, 178, 111);
+  background-color: rgb(173, 141, 204);
   border-radius: 10px;
 }
 
@@ -65,14 +79,14 @@ input {
 
 .pay {
   text-align: center;
-  background-color: rgb(132, 185, 111);
+  background-color: rgb(173, 141, 204);
   border-radius: 5px;
   margin: 20px 40px 20px 40px;
   padding: 5px 0;
 }
 
 footer {
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
 
   display: flex;
   justify-content: center;
