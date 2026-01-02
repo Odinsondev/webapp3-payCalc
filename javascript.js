@@ -14,7 +14,7 @@ const statsOff = document.getElementById('stats-off');
 const superstatsOff = document.getElementById('superstats-off');
 const sick = document.getElementById('sick');
 const leave = document.getElementById('leave');
-let net = document.getElementById('net');
+const pay = document.getElementById('pay');
 
 const hoursPerDay = 11;
 const payRate = 44.58;
@@ -125,7 +125,7 @@ function calculatePay() {
   const netPay =
     Math.round((totalGross - totalTaxes - totalDeductions) * 100) / 100;
 
-  net.textContent = 'Approximate pay: ' + netPay;
+  pay.textContent = 'Approximate pay: ' + netPay;
 }
 
 function changeColor() {
@@ -136,10 +136,10 @@ function changeColor() {
   }
 
   if (color === 1) {
-    root.style.setProperty('--background1', 'rgb(115, 79, 150)');
-    wrapper.style.backgroundColor = 'rgb(138, 107, 168)';
-    container.style.backgroundColor = 'rgb(173, 141, 204)';
-    pay.style.backgroundColor = 'rgb(173, 141, 204)';
+    root.style.setProperty('--background1', 'rgb(138, 107, 168)');
+    wrapper.style.backgroundColor = 'rgb(173, 141, 204)';
+    container.style.backgroundColor = 'rgb(204, 183, 225)';
+    pay.style.backgroundColor = 'rgb(204, 183, 225)';
   }
 
   if (color === 2) {
